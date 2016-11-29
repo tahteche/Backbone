@@ -20,29 +20,27 @@
 				}
 			});
 
-			// Now we can create our concrete instance of the model
-			// with default values as follows:
-			var todo1 = new Todo();
-
-			console.log(todo1.get('title')); //Empty string
-			console.log(todo1.get('completed')); //false
-
-			// Or we could instantiate it with some of the attributes (e.g., with custom title):
-			var todo2 = new Todo({
-				title: 'Check the atributes of both meodels in the console.'
+			//Setting the value of attributes via instantiation
+			var myTodo = new Todo({
+				title: "Set through instantiation."
 			});
 
-			//Following logs: {"title":"Check the atributes of both meodels in the console.","completed":false}
-			console.log(JSON.stringify(todo2));
+			console.log("Todo title: " + myTodo.get('title')); //Todo title: Set through instantiation.
+			console.log("completed: " + myTodo.get('completed')); //Completed: false
 
-			//Or override all of the default attributes:
-			var todo3 = new Todo({
-				title: 'This todo is done, so take no action on this one',
+			// Set single attribute value at a time through Model.set():
+			myTodo.set('title', 'Title attribute set via Model.set().');
+			console.log('Todo title: ' + myTodo.get('title')); //Todo title: Title attribute set through Model.set().
+			console.log('Completed: ' + myTodo.get('completed')); //Completed: false
+
+			//Set map of attributes through Model.set():
+			myTodo.set({
+				title: "Both attributes set through Model.set().",
 				completed: true
-			});
 
-			//Following logs: {"title":"This todo is done, so take no action on this one.","completed":true}
-			console.log(JSON.stringify(todo3));
+			});
+			console.log('Todo title: ' + myTodo.get('title')); //Todo title: Both attributes set throught Model.set().
+			console.log('Todo title: ' + myTodo.get('completed')); //Completed: true
 		</script>
 	</body>
 </html>
